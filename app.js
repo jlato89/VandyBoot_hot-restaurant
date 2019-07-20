@@ -23,7 +23,7 @@ var waitingList = [];
 
 //Basic Routes
 app.get("/", function (req, res) {
-   res.sendFile(path.join(__dirname, "index.html"));
+   res.sendFile(path.join(__dirname, "home.html"));
 });
 
 app.get("/reserve", function (req, res) {
@@ -58,7 +58,7 @@ app.post("/api/reservations", function (req, res) {
    console.log(newReservation);
 
    // if reservations is 5 or more, add to wait list
-   if (!reservations.length > 5) { reservations.push(newReservation); } 
+   if (reservations.length !== 5) { reservations.push(newReservation); } 
    else { waitingList.push(newReservation); }
 
    res.json(newReservation);
