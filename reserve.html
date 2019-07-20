@@ -56,28 +56,27 @@
             </div>
         </footer>
     </div>
-</body>
 <script type="text/javascript">
     $("#submit").on("click", function(event){
         event.preventDefault();
         var newTable = {
         name: $("#name").val().trim(),
         phone: $("#number").val().trim(),
-        email: $("#email"),
+        email: $("#email").val().trim(),
         id: $("#id").val().trim()
-        
-      };
-
-    });
-
+        };
     $.post("/api/reservations", newTable)
         .then(function(data) {
           console.log("reserve.html", data);
           alert("Adding reservation...");
         });
+
+    });
+
     
 
 
 </script>
+</body>
 
 </html>
