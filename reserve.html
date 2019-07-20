@@ -21,27 +21,26 @@
             <a class="btn btn-danger btn-larg" href="reserve" role="button"> Make Reservation</a>
         </div>
         <div class="form-group">
-            <form>
+            <form method="POST">
                 <div class="form-group">
                     <label for="exampleInputPassword1">Name</label>
-                    <input type="text" class="form-control" id="exampleInputPassword1" name="Name">
+                    <input type="text" class="form-control" id="name" name="Name">
                 </div>
                 <div class="form-group">
                     <label for="exampleInputPassword1">Phone Number</label>
-                    <input type="number" class="form-control" id="exampleInputNumber1" name="Phone">
+                    <input type="number" class="form-control" id="number" name="Phone">
                 </div>
                 <div class="form-group">
                     <label for="exampleInputEmail1">Email</label>
-                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-                        name="Email">
+                    <input type="email" class="form-control" id="email" aria-describedby="emailHelp" name="Email">
                     <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone
                         else.</small>
                 </div>
                 <div class="form-group">
                     <label for="exampleInputId1">Unique ID</label>
-                    <input type="text" class="form-control" id="exampleInputId1" name="ID">
+                    <input type="text" class="form-control" id="id" name="ID">
                 </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="submit" id="submit" class="btn btn-primary">Submit</button>
             </form>
         </div>
         <footer class="footer mt-4">
@@ -59,6 +58,26 @@
     </div>
 </body>
 <script type="text/javascript">
+    $("#submit").on("click", function(event){
+        event.preventDefault();
+        var newTable = {
+        name: $("#name").val().trim(),
+        phone: $("#number").val().trim(),
+        email: $("#email"),
+        id: $("#id").val().trim()
+        
+      };
+
+    });
+
+    $.post("/api/reservations", newTable)
+        .then(function(data) {
+          console.log("reserve.html", data);
+          alert("Adding reservation...");
+        });
+    
+
+
 </script>
 
 </html>
